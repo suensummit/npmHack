@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>npm ikea</title>
+		<meta name="description" content="npm ikea">
+		<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-click-drag-component"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.8/interact.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="public/javascripts/ikea.js"></script>
+		<script>
+			registerAframeClickDragComponent(window.AFRAME);
+		</script>
+		<link rel="stylesheet" type="text/css" href="public/javascripts/drag.css">
+	</head>
+	<body>
+		<a-scene>
+			<a-sky src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Fsechelt.jpg?1490307995926" radius="30"></a-sky>
+
+			<a-box click-drag src="https://theme.npm.edu.tw/selection/att/collection/04000971/17010197.jpg" position="-2 0.5 -4"></a-box>
+			<a-sphere click-drag src="https://theme.npm.edu.tw/selection/att/collection/04000975/17010199.jpg" radius="0.5" position="0 0.5 -3"></a-sphere>
+
+			<a-cone src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Fcone.jpg?1490308535937" height="2" radius-top="0.1" position="0 1 -6"></a-cone>
+			<a-box src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Fdirt.jpg?1490308269805" position="2 0.5 -4"></a-box>
+
+			<!-- <a-plane src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Ffloor.jpg?1490307896453" rotation="-90 0 0" height="100" width="100"></a-plane> -->
+
+			<a-light type="ambient" color="#666"></a-light>
+			<a-light type="point" intensity="1" position="2 4 4"></a-light>
+			<a-camera look-controls-enabled="false"></a-camera>
+		</a-scene>
+	</body>
+</html>
