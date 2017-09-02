@@ -9,3 +9,7 @@ exports.index = function(req, res){
 exports.main = function(req, res){
 	res.render('main');
 };
+
+exports.deco = function(req, res){
+	res.render('deco');
+};

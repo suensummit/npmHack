@@ -1,37 +1,51 @@
 extends layout
 
 block body_content
-	.index_title= WEBSITE_TITLE
-	.index_subtitle= '我的國寶，你的日常'
 
-	img#item.draggable(src="images/item.png", style="width: 20%")
+	form#upload_form(method="POST", action="/resource/file", enctype="multipart/form-data")
+		.col-xs-offset-2.col-xs-8
+			label.title.file_subtitle 拍下你的房間上傳！
+			input#file_origin.form-control.lockable(type="file", name="file_origin", title="選擇檔案")
+			input#file_size(type="hidden", name="size")
+			input#file_name(type="hidden", name="name", value="bg_user")
+			p(style="color: #fff")='（考量網路傳輸速度，檔案大小不超過 20 MB 為原則）'
+		.col-xs-offset-2.col-xs-8
+			button.btn.btn-lg.btn-block.btn-upload 確定
 
 block body_script
+	script(src="/javascripts/bootstrap.file-input.js")
+	script(src="/javascripts/jquery.form.js")
 	script.
-		interact('.draggable')
-		.draggable({
-			inertia: true,
-			restrict: {
-				restriction: "parent",
-				endOnly: true,
-				elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-			},
-			autoScroll: true,
-			onmove: dragMoveListener,
-			onend: function (event) {}
+		var original_filename = '';
+		$('input[type=file]').bootstrapFileInput();				
+
+		$('#file_origin').on('change', function(event) {
+			$('#file_size').val(this.files[0].size);
+			original_filename = this.files[0].name;
 		});
 
-		function dragMoveListener (event) {
-			var target = event.target,
-				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+		$('.btn-upload').on('click', function(event) {
+			event.preventDefault();
 
-			target.style.webkitTransform =
-			target.style.transform =
-				'translate(' + x + 'px, ' + y + 'px)';
+			var url = $('#upload_form').attr('action');
+			var filename = $('input[name="name"]').val();
+			if(!original_filename.toLowerCase().match(/(png|jpg|jpeg)$/)) {
+				alert('上傳檔案需為圖檔');
+				return false;
+			}	
 
-			target.setAttribute('data-x', x);
-			target.setAttribute('data-y', y);
-		}
-
-		window.dragMoveListener = dragMoveListener;
+			$('#upload_form').ajaxSubmit({
+				url: url,
+				dataType: 'json',
+				success: function(data, status, xhr, form) {
+					if(data !=undefined){
+						var btn='';
+						var tempHref='';
+					}
+					inform('上傳成功！');
+				},
+				error: function(xhr, err) {
+					alert('上傳失敗');
+				}
+			});
+		});

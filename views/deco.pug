@@ -1,0 +1,69 @@
+extends layout
+
+block body_content
+
+	img#item-1.resize-drag(src="images/item.png", style="width: 20%")
+	img#item-2.resize-drag(src="images/item.png", style="width: 20%")
+
+block body_script
+	script.
+		$(document).on('ready', function(){
+			$('body').attr('id', 'deco');
+		});
+
+		interact('.resize-drag')
+		.draggable({
+			onmove: window.dragMoveListener
+		})
+		.resizable({
+			preserveAspectRatio: true,
+			edges: { left: true, right: true, bottom: true, top: true }
+		})
+		.on('resizemove', function (event) {
+			var target = event.target,
+					x = (parseFloat(target.getAttribute('data-x')) || 0),
+					y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+			// update the element's style
+			target.style.width	= event.rect.width + 'px';
+			target.style.height = event.rect.height + 'px';
+
+			// translate when resizing from top or left edges
+			x += event.deltaRect.left;
+			y += event.deltaRect.top;
+
+			target.style.webkitTransform = target.style.transform =
+					'translate(' + x + 'px,' + y + 'px)';
+
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
+			target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
+		});
+
+		interact('.draggable')
+		.draggable({
+			inertia: true,
+			restrict: {
+				restriction: 'parent',
+				endOnly: true,
+				elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+			},
+			autoScroll: true,
+			onmove: dragMoveListener,
+			onend: function (event) {}
+		});
+
+		function dragMoveListener (event) {
+			var target = event.target,
+				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+			target.style.webkitTransform =
+			target.style.transform =
+				'translate(' + x + 'px, ' + y + 'px)';
+
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
+		}
+
+		window.dragMoveListener = dragMoveListener;

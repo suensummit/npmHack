@@ -1,8 +1,15 @@
 extends layout
 
 block body_content
-	.index_title= WEBSITE_TITLE
-	.index_subtitle= '我的國寶，你的日常'
+	div(style="padding-left: 10%")
+		.index_title= WEBSITE_TITLE
+		.index_subtitle= '我的國寶，你的日常'
 
-	a.btn.btn-primary(href="/main") 開始使用
+		.row
+			.col-sm-2
+			.col-sm-8
+				a.btn.btn-lg.btn-block(href="/main") 開始使用
+
+	//- img(src=global.ITEMS[0].result[0].imgUrl)
+
 block body_script

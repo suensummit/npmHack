@@ -27,8 +27,6 @@ function initConstant()
 	template.checkSystemJson(logger);
 
 	var system = require('./system.json');
-	var search = require('./common/search_result.json');
-	var items  = require('./common/items.json');
 
 	process.env.NODE_ENV 		= system.NODE_ENV;
 	global.HOMEURL 				= 'http://' + system[system.NODE_ENV]['context.domain'];
@@ -38,6 +36,11 @@ function initConstant()
 	global.FOLDER_TMP 			= path.join(__dirname + '/' + system[system.NODE_ENV]['folder.tmp']);
 	global.URL_UPLOADS 			= system[system.NODE_ENV]['url.uploads'];
 	global.URL_TMP 				= system[system.NODE_ENV]['url.tmp'];
+
+	global.SERACH = require('./common/search_result.json');
+	global.ITEMS  = require('./common/items.json');
+
+	// console.log(global.ITEMS[0].result[0]);
 
 	// global.FACEBOOK_APP_ID 			= system[system.NODE_ENV]['facebook.id'];
 	// global.FACEBOOK_APP_SECRET 		= system[system.NODE_ENV]['facebook.secret'];
@@ -66,11 +69,12 @@ function initApp()
 	app.set('port', global.SERVERPORT || 3000);
 	app.set('views', path.join(__dirname + '/views'));
 	app.set('view engine', 'pug');
-	app.use(favicon(path.join(__dirname + '/public/images/cloudeep.ico')));
+	app.use(favicon(path.join(__dirname + '/public/images/favicon.ico')));
 	app.use(loggerMiddleware('dev'));
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true }));
-	app.use(multer({dest: global.FOLDER_TMP}).single('image'));
+	// app.use(multer({dest: global.FOLDER_TMP}).single('image'));
+	app.use(multer({dest: global.FOLDER_TMP}).single('file_origin'));
 	app.use(cookieParser());
 	app.use(session({
 		secret: 'cloudeep',
@@ -110,9 +114,11 @@ function initApp()
 	//
 	app.get('/', routeIndex.index);
 	app.get('/main', routeIndex.main);
+	app.get('/deco', routeIndex.deco);
 	
 	// Restful sample
 	app.use('/resource/restful', require('./routes/restful/RESTful'));
+	app.use('/resource/file', require('./routes/restful/file'));
 
 	// Route all exceptions (should be the last route) to error page.
 	app.use(function(req, res) {
