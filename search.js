@@ -1,6 +1,6 @@
 var Q = require('q')
-  , request = require('request')
-  ;
+	, request = require('request')
+	;
 
 var data = require('./common/search_result.json')
 var results = [];
@@ -12,10 +12,22 @@ for (var i=0; i<data.length; i++) {
 			'apiKey': 'bd7c5038-f23b-4dd9-8bc4-885ba4230773'
 		}
 	};
-	request.get(options)
-	.on('response', function(response) {
-		console.log(response.status);
-		console.log(response.result);
-		results.push(response.result);
-	})
+
+	console.log(options.url);
+
+	function callback(error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var info = JSON.parse(body);
+			console.log(info);
+		}
+	}
+
+	request(options, callback);
+
+	// request(options)
+	// .on('response', function(response) {
+	// 	console.log(response.status);
+	// 	console.log(response.result);
+	// 	results.push(response.result);
+	// })
 }

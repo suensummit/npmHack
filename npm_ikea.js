@@ -27,6 +27,9 @@ function initConstant()
 	template.checkSystemJson(logger);
 
 	var system = require('./system.json');
+	var search = require('./common/search_result.json');
+	var items  = require('./common/items.json');
+
 	process.env.NODE_ENV 		= system.NODE_ENV;
 	global.HOMEURL 				= 'http://' + system[system.NODE_ENV]['context.domain'];
 	global.SERVERHOST 			= system[system.NODE_ENV]['context.host'];
@@ -106,6 +109,7 @@ function initApp()
 	// TODO: Write your route here.
 	//
 	app.get('/', routeIndex.index);
+	app.get('/main', routeIndex.main);
 	
 	// Restful sample
 	app.use('/resource/restful', require('./routes/restful/RESTful'));
