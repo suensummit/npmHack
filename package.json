@@ -21,6 +21,7 @@
 		"moment": 			"*",
 		"q": 				"*",
 		"passport": 		"*",
+		"request": 			"*",
 		"winston": 			"*"
 	}
 }

@@ -35,15 +35,11 @@ function initConstant()
 	global.FOLDER_TMP 			= path.join(__dirname + '/' + system[system.NODE_ENV]['folder.tmp']);
 	global.URL_UPLOADS 			= system[system.NODE_ENV]['url.uploads'];
 	global.URL_TMP 				= system[system.NODE_ENV]['url.tmp'];
-	global.CASSANDRA_CLUSTER 	= system[system.NODE_ENV]['cassandra.hosts'] || ['localhost'];
-	global.CASSANDRA_POOLSIZE 	= system[system.NODE_ENV]['cassandra.poolSize'] || 16;
-	global.CASSANDRA_KEYSPACE 	= system[system.NODE_ENV]['cassandra.keyspace'];
 
-	global.FACEBOOK_APP_ID 			= system[system.NODE_ENV]['facebook.id'];
-	global.FACEBOOK_APP_SECRET 		= system[system.NODE_ENV]['facebook.secret'];
-	global.GOOGLE_APP_ID 			= system[system.NODE_ENV]['google.id'];
-	global.GOOGLE_APP_SECRET 		= system[system.NODE_ENV]['google.secret'];
-	global.GOOGLE_ANALYTICS_CODE 	= system[system.NODE_ENV]['google.analytics_code'];
+	// global.FACEBOOK_APP_ID 			= system[system.NODE_ENV]['facebook.id'];
+	// global.FACEBOOK_APP_SECRET 		= system[system.NODE_ENV]['facebook.secret'];
+	// global.GOOGLE_APP_ID 			= system[system.NODE_ENV]['google.id'];
+	// global.GOOGLE_APP_SECRET 		= system[system.NODE_ENV]['google.secret'];
 }
 
 /**
@@ -52,38 +48,7 @@ function initConstant()
 function initDbmgr()
 {
 	var deferred = Q.defer();
-	
-	/*
-	 * Neil_20140801: Change form Helenus to Node-Cassandra-CQL.
-	 * Please also note that we don't use 9160 port anymore.
-	 *
-	 * Cassandra ports:
-	 *   7199 - JMX (was 8080 pre Cassandra 0.8.xx)
-	 *   7000 - Internode communication (not used if TLS enabled)
-	 *   7001 - TLS Internode communication (used if TLS enabled)
-	 *   9160 - Thift client API
-	 *   9042 - CQL native transport port
-
-	global.HELENUS_DMP = require('./models/Helenus').getManager(global.CASSANDRA_KEYSPACE, function(context, dbmgr) {
-		logger.info('Helenus connection to Keyspace ' + global.CASSANDRA_KEYSPACE + ' built.');
-	});
-	*/
-
-	require('./models/CQL3').getManager(
-		global.CASSANDRA_CLUSTER,
-		global.CASSANDRA_KEYSPACE,
-		global.CASSANDRA_POOLSIZE
-	)
-	.then(function(dbmgr) {
-		global.CQL3 = dbmgr;
-	})
-	.catch(function(ex) {
-		deferred.reject(ex);
-	})
-	.done(function() {
-		deferred.resolve();
-	});
-
+	deferred.resolve();
 	return deferred.promise;
 }
 
@@ -102,8 +67,6 @@ function initApp()
 	app.use(loggerMiddleware('dev'));
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true }));
-	// Neil_20150814: Multer changes usage after 1.*, note the name should match the name of input.
-	// app.use(multer({dest: global.FOLDER_TMP}).fields([{name: 'image', maxCount: 1}]));
 	app.use(multer({dest: global.FOLDER_TMP}).single('image'));
 	app.use(cookieParser());
 	app.use(session({
@@ -146,7 +109,6 @@ function initApp()
 	
 	// Restful sample
 	app.use('/resource/restful', require('./routes/restful/RESTful'));
-
 
 	// Route all exceptions (should be the last route) to error page.
 	app.use(function(req, res) {
