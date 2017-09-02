@@ -4,8 +4,10 @@ block body_content
 	.index_title= WEBSITE_TITLE
 	.index_subtitle= '我的國寶，你的日常'
 
+	img#item.draggable(src="images/item.png", style="width: 20%")
+
 block body_script
-	//-
+	script.
 		interact('.draggable')
 		.draggable({
 			inertia: true,
