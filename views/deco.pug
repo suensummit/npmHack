@@ -5,17 +5,17 @@ block body_content
 	button.btn.btn-lg.btn-item.to_show(style="position: absolute; bottom: 100px") 找傢俱？來故宮！
 
 	div#tabs.selector
-		img.item.item-1.resize-drag(src="images/1_1.png", style="width: 20%; display: none;")
-		img.item.item-1.resize-drag(src="images/1_2.png", style="width: 20%; display: none;")
-		img.item.item-2.resize-drag(src="images/2_1.png", style="width: 20%; display: none;")
-		img.item.item-2.resize-drag(src="images/2_2.png", style="width: 20%; display: none;")
-		img.item.item-3.resize-drag(src="images/3_1.png", style="width: 20%; display: none;")
-		img.item.item-4.resize-drag(src="images/4_1.png", style="width: 20%; display: none;")
-		img.item.item-4.resize-drag(src="images/4_2.png", style="width: 20%; display: none;")
-		img.item.item-5.resize-drag(src="images/5_1.png", style="width: 20%; display: none;")
-		img.item.item-5.resize-drag(src="images/5_2.png", style="width: 20%; display: none;")
-		img.item.item-6.resize-drag(src="images/6_1.png", style="width: 20%; display: none;")
-		img.item.item-6.resize-drag(src="images/6_2.png", style="width: 20%; display: none;")
+		img.item.item-1.resize-drag(src="images/1_1.png", style="width: 10%; display: none;")
+		img.item.item-1.resize-drag(src="images/1_2.png", style="width: 10%; display: none;")
+		img.item.item-2.resize-drag(src="images/2_1.png", style="width: 10%; display: none;")
+		img.item.item-2.resize-drag(src="images/2_2.png", style="width: 10%; display: none;")
+		img.item.item-3.resize-drag(src="images/3_1.png", style="width: 10%; display: none;")
+		img.item.item-4.resize-drag(src="images/4_1.png", style="width: 10%; display: none;")
+		img.item.item-4.resize-drag(src="images/4_2.png", style="width: 10%; display: none;")
+		img.item.item-5.resize-drag(src="images/5_1.png", style="width: 10%; display: none;")
+		img.item.item-5.resize-drag(src="images/5_2.png", style="width: 10%; display: none;")
+		img.item.item-6.resize-drag(src="images/6_1.png", style="width: 10%; display: none;")
+		img.item.item-6.resize-drag(src="images/6_2.png", style="width: 10%; display: none;")
 
 block body_script
 	script.
@@ -26,8 +26,8 @@ block body_script
 		$('.to_show').on('click', function() {
 			$('.to_show').hide();
 			$('.item').show();
-			$('.item').css('left', '100px');
-			$('.item').css('bottom', '100px');
+			$('.item').css('left', '50px');
+			$('.item').css('bottom', '50px');
 		})
 
 		interact('.resize-drag')
