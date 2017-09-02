@@ -10,7 +10,9 @@ block body_content
 			input#file_name(type="hidden", name="name", value="bg_user")
 			p(style="color: #fff")='（考量網路傳輸速度，檔案大小不超過 20 MB 為原則）'
 		.col-xs-offset-2.col-xs-8
-			button.btn.btn-lg.btn-block.btn-upload 確定
+			button.btn.btn-lg.btn-block.btn-upload.to_hide 確定
+		.col-xs-offset-2.col-xs-8
+			a.btn.btn-lg.btn-block.to_show(href="/deco", style="display: none;") 開始佈置
 
 block body_script
 	script(src="/javascripts/bootstrap.file-input.js")
@@ -43,6 +45,8 @@ block body_script
 						var tempHref='';
 					}
 					inform('上傳成功！');
+					$('.to_hide').hide();
+					$('.to_show').show();
 				},
 				error: function(xhr, err) {
 					alert('上傳失敗');
