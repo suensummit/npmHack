@@ -1,0 +1,28 @@
+{
+	"NODE_ENV": "development",
+	"development": {
+		"context.host"		: "localhost",
+		"context.port"		: "3000",
+		"context.domain"	: "npm.ikea:3000",
+		"context.basepath"	: "/",
+		"folder.uploads"	: "public/uploads",
+		"folder.tmp"		: "public/tmp",
+		"url.uploads"		: "/uploads",
+		"url.tmp"			: "/tmp"
+	},
+	"testing": {
+		"context.host"		: "npm.ikea",
+		"context.port"		: "3000",
+		"context.domain"	: "npm.ikea",
+		"context.basepath"	: "/",
+		"folder.uploads"	: "public/uploads",
+		"folder.tmp"		: "public/tmp",
+		"url.uploads"		: "/uploads",
+		"url.tmp"			: "/tmp"
+	},
+	"staging": {
+	},
+	"production": {
+	}
+}
+
