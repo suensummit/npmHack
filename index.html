@@ -8,18 +8,14 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.8/interact.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="public/javascripts/ikea.js"></script>
-		<script>
-			registerAframeClickDragComponent(window.AFRAME);
-		</script>
 		<link rel="stylesheet" type="text/css" href="public/stylesheets/drag.css">
 	</head>
 	<body>
 		<a-scene>
 			<a-sky src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Fsechelt.jpg?1490307995926" radius="30"></a-sky>
 
-			<a-box click-drag src="https://theme.npm.edu.tw/selection/att/collection/04001130/17009614.jpg" position="-2 0.5 -4"></a-box>
-			<a-sphere click-drag src="https://theme.npm.edu.tw/selection/att/collection/04001130/17009614.jpg" radius="0.5" position="0 0.5 -3"></a-sphere>
-
+			<a-box src="https://theme.npm.edu.tw/selection/att/collection/04001130/17009614.jpg" position="-2 0.5 -4"></a-box>
+			<a-sphere src="https://theme.npm.edu.tw/selection/att/collection/04001130/17009614.jpg" radius="0.5" position="0 0.5 -3"></a-sphere>
 			<a-cone src="public/images/17010199_small.jpg" height="2" radius-top="0.1" position="0 1 -6"></a-cone>
 			<a-box src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Fdirt.jpg?1490308269805" position="2 0.5 -4"></a-box>
 
@@ -27,7 +23,6 @@
 
 			<a-light type="ambient" color="#666"></a-light>
 			<a-light type="point" intensity="1" position="2 4 4"></a-light>
-			<a-camera look-controls-enabled="false"></a-camera>
 		</a-scene>
 	</body>
 </html>

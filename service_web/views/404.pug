@@ -1,0 +1,26 @@
+extends layout
+
+block body_content
+	.container.page
+		.row
+			.col-xs-12
+				h2 404 Page
+				h2 
+					| 您要求的頁面目前不存在，將
+					span#sec
+					| 為您導引回首頁...
+
+block body_script
+	script.
+		var timeout_redirect = 10;
+		function redirect() {
+			if (timeout_redirect-- <= 0) {
+				location.href = '/';
+			}
+			else {
+				$('#sec').html('在 ' + timeout_redirect + ' 秒後')
+				setTimeout(redirect, 1000);
+			}
+		}
+
+		redirect();

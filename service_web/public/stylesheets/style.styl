@@ -1,0 +1,102 @@
+$color_main = #134080
+$font_normal = Helvetica, STHeiti, "Microsoft JhengHei", "微軟正黑體", PMingLiU, "Lucida Grande", Arial, sans-serif
+
+$height_header = 50px
+$height_footer = 30px
+
+// Bootstap's variables, note @screen-xs-min is defined by Less, not Bootstrap.
+$screen-lg = 1200px		// Large devices (large desktops)
+$screen-md = 992px		// Medium devices (desktops)
+$screen-sm = 768px		// Small devices (tablets, under this size called extreme small, i.e., phones)
+$screen-md-max = $screen-lg - 1
+$screen-sm-max = $screen-md - 1
+$screen-xs-max = $screen-sm - 1
+
+transition(setting)
+	-webkit-transition: setting
+	-moz-transition: setting
+	-o-transition: setting
+	transition: setting
+
+transform(setting)
+	-webkit-transform: setting
+	-moz-transform: setting
+	-o-transform: setting
+	transform: setting
+
+/***************
+ * General
+ ***************/
+html, body
+	overflow-x: hidden
+	height: 100%
+
+body
+	width: $width_max
+	margin: 0 auto
+	padding: 0
+	font-family: $font_normal
+	// font-size: 62.5% /* Let 1em = 10px */ 
+	font-size: 14px
+	overflow-y: scroll
+	-webkit-overflow-scrolling: touch
+
+.page
+	padding-top: 30px + $height_header
+	padding-bottom: 30px + $height_footer
+	min-height: 100%
+
+a:link, a:visited
+	color: $color_main
+	text-decoration: none
+
+table
+	width: 100%
+	text-align: center
+	th, td
+		padding: 3px 5px
+
+.todos
+	color: #f00
+	margin-top: 20px
+	&::before
+		content: '未完成開發備註：'
+
+.modal-dialog
+	margin-top: 100px
+	.modal-header
+		border-radius: 6px 6px 0 0
+
+/***************
+ * Header & Footer
+ ***************/
+#header
+	margin-bottom: -1 * $height_header
+	height: $height_header
+	line-height: $height_header
+	font-size: 20px
+	color: #fff
+	background-color: $color_main
+	-webkit-transform: translate3d(0,0,0)	// for iOS fixed
+
+#footer
+	margin-top: -1 * $height_footer
+	height: $height_footer
+	line-height: $height_footer
+	text-align: center
+	color: #fff
+	background-color: $color_main
+
+/***************
+ * The following should be removed.
+ ***************/
+
+.index_title
+	font-size: 2.4em
+	line-height: 1.5em
+
+.index_subtitle
+	font-size: 1.2em
+	line-height: 2.5em
+	margin-bottom: 40px
+

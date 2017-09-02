@@ -1,0 +1,37 @@
+- var modal_title = WEBSITE_TITLE
+#modal_alert.modal.fade(role="dialog", aria-hidden="true")
+	.modal-dialog
+		.modal-content
+			.modal-header.bg-danger
+				button.close(data-dismiss="modal", aria-label="Close")
+					span(aria-hidden="true") &times;
+				h4.modal_title= modal_title
+			.modal-body
+				#modal_alert_message
+			.modal-footer
+				button.btn.btn-danger.default_focus(data-dismiss="modal") OK
+
+#modal_inform.modal.fade(role="dialog", aria-hidden="true")
+	.modal-dialog
+		.modal-content
+			.modal-header.bg-info
+				button.close(data-dismiss="modal", aria-label="Close")
+					span(aria-hidden="true") &times;
+				h4.modal_title= modal_title
+			.modal-body
+				#modal_inform_message
+			.modal-footer
+				button.btn.btn-default.default_focus(data-dismiss="modal") OK
+
+#modal_confirm.modal.fade(role="dialog", aria-hidden="true")
+	.modal-dialog
+		.modal-content
+			.modal-header.bg-warning
+				button.close(data-dismiss="modal", aria-label="Close")
+					span(aria-hidden="true") &times;
+				h4.modal_title= modal_title
+			.modal-body
+				#modal_confirm_message
+			.modal-footer
+				button.btn.btn-default#modal_confirm_ok(data-dismiss="modal") OK
+				button.btn.btn-default.default_focus(data-dismiss="modal") Cancel

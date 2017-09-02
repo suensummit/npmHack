@@ -1,0 +1,23 @@
+extends layout
+
+block body_content
+	.index_title= WEBSITE_TITLE
+	.index_subtitle 
+		| Welcome to #{WEBSITE_TITLE} 
+		#datetime
+
+block body_script
+	script.
+		function showDatetime() {
+			$('#datetime').html(
+				sprintf("The current time is %s, and Today is %s", 
+					new moment().format('YYYY-MM-DD HH:mm:ss'),
+					new moment().format('dddd, MMMM Do YY')
+				)
+			);
+			setTimeout(showDatetime, 1000);
+		}
+
+		$(function() {
+			showDatetime();
+		}); 
