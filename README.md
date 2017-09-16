@@ -7,6 +7,7 @@
 ```
 git clone https://github.com/suensummit/npmHack.git
 cd npmHack
+cp common/system.json system.json
 npm install
 npm start
 ```
